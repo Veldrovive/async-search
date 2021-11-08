@@ -5,7 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+  build-and-push:
     docker:
       - image: cimg/base:2021.04
     steps:
@@ -25,12 +25,11 @@ jobs:
       - run:
           name: Docker build
           command: |
-            docker build . -t app
+            docker build . -t veldrovive/async-search:latest -t veldrovive/async-search:$CIRCLE_BUILD_NUM
       - run:
           name: Docker push
           command: |
-            docker tag app veldrovive/async-search:latest
-            docker push veldrovive/async-search:latest
+            docker push veldrovive/async-search --all-tags
       - run:
           name: Install
           command: |
@@ -39,9 +38,14 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  start-build:
+  start-build-and-push:
     jobs:
-      - build:
+      - build-and-push:
           context:
             - DockerVeldrovive
+          filters:
+            branches:
+              only:
+                - main
+
 
