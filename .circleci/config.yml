@@ -23,22 +23,18 @@ jobs:
           command: |
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
       - run:
-          name: Test ssh
+          name: Docker build
           command: |
-            ssh -o "StrictHostKeyChecking=no" ubuntu@52.60.230.10 "echo SSH"
-      # - run:
-      #     name: Docker build
-      #     command: |
-      #       docker build . -t app
-      # - run:
-      #     name: Docker push
-      #     command: |
-      #       docker tag app veldrovive/async-search:latest
-      #       docker push veldrovive/async-search:latest
-      # - run:
-      #     name: Install
-      #     command: |
-      #       ssh ubuntu@52.60.230.10 "cd /home/ubuntu/containers/asyncSearch && docker-compose down && docker-compose pull && docker-compose up -d"
+            docker build . -t app
+      - run:
+          name: Docker push
+          command: |
+            docker tag app veldrovive/async-search:latest
+            docker push veldrovive/async-search:latest
+      - run:
+          name: Install
+          command: |
+            ssh -o "StrictHostKeyChecking=no" ubuntu@52.60.230.10 "cd /home/ubuntu/containers/asyncSearch && docker-compose down && docker-compose pull && docker-compose up -d"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
