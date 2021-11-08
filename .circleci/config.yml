@@ -16,8 +16,8 @@ jobs:
       - run:
           name: Docker login sanity check
           command: |
-            echo $DOCKER_PASS
-            echo $DOCKER_USER
+            echo "Docker Pass: $DOCKER_PASS"
+            echo "Docker User: $DOCKER_USER"
       - run:
           name: Docker log in
           command: |
