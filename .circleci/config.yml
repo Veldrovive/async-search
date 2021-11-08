@@ -14,6 +14,11 @@ jobs:
           version: 19.03.13
           docker_layer_caching: false
       - run:
+          name: Docker login sanity check
+          command: |
+            echo $DOCKER_PASS
+            echo $DOCKER_USER
+      - run:
           name: Docker log in
           command: |
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
