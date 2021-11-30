@@ -2,6 +2,7 @@ import useAvailabilityMatcher from "@/lib/useAvailabilityMatcher"
 import Head from "next/head"
 import { useEffect, useCallback, useState } from "react"
 import {useDropzone} from 'react-dropzone'
+import ReactGA from "react-ga4"
 
 import { Container, Col, Row, Button } from "react-bootstrap"
 
@@ -21,12 +22,6 @@ export default function Home() {
     maxFiles: 1,
     multiple: false
   })
-
-  useEffect(() => {
-    if (bestRoomSchedule) {
-      console.log("Best Room Schedule:", bestRoomSchedule)
-    }
-  }, [bestRoomSchedule])
 
   const stopLinkOpenFileBrowser = useCallback(e => {
     // e.preventDefault()
@@ -52,6 +47,14 @@ export default function Home() {
     }
   }, [setFavoriteString])
 
+  const _downloadSchedule = useCallback(() => {
+    downloadSchedule()
+    ReactGA.event({
+      category: 'Schedule',
+      action: 'Download'
+    })
+  }, [downloadSchedule])
+
   return (<>
     <Head>
       <title>Async Search</title>
@@ -76,7 +79,7 @@ export default function Home() {
         <Col></Col>
       </Row>
 
-      <Button onClick={downloadSchedule} disabled={!pathsReady}>Download Break Schedule</Button>
+      <Button onClick={_downloadSchedule} disabled={!pathsReady}>Download Break Schedule</Button>
 
       <Row className={Styles.infoContainer}>
         <Col></Col>

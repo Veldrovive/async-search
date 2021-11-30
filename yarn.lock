@@ -2615,10 +2615,10 @@ react-dropzone@^11.4.2:
     file-selector "^0.2.2"
     prop-types "^15.7.2"
 
-react-ga@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-3.3.0.tgz#c91f407198adcb3b49e2bc5c12b3fe460039b3ca"
-  integrity sha512-o8RScHj6Lb8cwy3GMrVH6NJvL+y0zpJvKtc0+wmH7Bt23rszJmnqEQxRbyrqUzk9DTJIHoP42bfO5rswC9SWBQ==
+react-ga4@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-ga4/-/react-ga4-1.4.0.tgz#cee869f76c554a81790b8e2ad7f678fdd5e8cf71"
+  integrity sha512-pF74ndJMf+cR44s1QlGfUc+L1YlC2UKsJ/r6YL+iWlFLoYd/e3AWbRec4A4EXCzPD+c9FuBiVQDO/0ZcLWloDg==
 
 react-is@17.0.2:
   version "17.0.2"

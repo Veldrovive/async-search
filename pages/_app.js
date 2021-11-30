@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
